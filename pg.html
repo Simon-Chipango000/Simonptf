@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Enhanced Professional Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .profile-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .profile-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .profile-header p {
+            font-size: 1.2rem;
+            color: #b8b8b8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .profile-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+            width: 100%;
+        }
+        
+        .profile-image-section {
+            position: relative;
+            width: 350px;
+            height: 350px;
+        }
+        
+        .profile-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(124, 58, 237, 0.5);
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, #00dbde, #fc00ff, #00dbde);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            padding: 5px;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 5rem;
+        }
+        
+        .ai-visuals {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.8), transparent);
+            filter: blur(10px);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .orb:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: -20px;
+            left: 50%;
+            animation-delay: 0s;
+        }
+        
+        .orb:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: -10px;
+            animation-delay: 2s;
+        }
+        
+        .orb:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            top: 40%;
+            left: -10px;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+            50% { transform: translate(20px, -20px) scale(1.1); opacity: 1; }
+            100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+        }
+        
+        .neural-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+        
+        .node {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(0, 219, 222, 0.7);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 219, 222, 0.5);
+        }
+        
+        .connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 219, 222, 0.5), transparent);
+            transform-origin: left center;
+        }
+        
+        .profile-info {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .profile-info h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #00dbde;
+        }
+        
+        .profile-info p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .skill-tag {
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: linear-gradient(90deg, #00dbde, #fc00ff);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ai-data-stream {
+            width: 100%;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-top: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .data-point {
+            position: absolute;
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, #00dbde, transparent);
+            animation: dataFlow 3s linear infinite;
+        }
+        
+        @keyframes dataFlow {
+            0% { transform: translateY(-20px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(60px); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .profile-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .profile-image-section {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .profile-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1> Simon Chipango</h1>
+            <p>AI Research Scientist & Machine Learning Engineer</p>
+        </div>
+        
+        <div class="profile-content">
+            <div class="profile-image-section">
+                <div class="profile-image-wrapper">
+                    <div class="profile-image">
+                        <i class="fas fa-user"><img src="img.png" alt=""></i>
+                    </div>
+                    <div class="ai-visuals">
+                        <div class="orb"></div>
+                        <div class="orb"></div>
+                        <div class="orb"></div>
+                        <div class="neural-network" id="neuralNetwork"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-info">
+                <h2>About Me</h2>
+                <p>I'm an AI Research Scientist with over 8 years of experience in developing cutting-edge machine learning algorithms. My work focuses on neural architecture search, explainable AI, and ethical AI implementation.</p>
+                <p>Currently leading AI initiatives at Demux Innovations, where we're pushing the boundaries of what's possible with deep learning and neural networks.</p>
+                
+                <div class="skills">
+                    <div class="skill-tag">Deep Learning</div>
+                    <div class="skill-tag">Computer Vision</div>
+                    <div class="skill-tag">Natural Language Processing</div>
+                    <div class="skill-tag">Reinforcement Learning</div>
+                    <div class="skill-tag">TensorFlow</div>
+                    <div class="skill-tag">PyTorch</div>
+                    <div class="skill-tag">Python</div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                </div>
+                
+                <div class="ai-data-stream" id="dataStream"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create neural network visualization
+        const neuralNetwork = document.getElementById('neuralNetwork');
+        const nodes = [];
+        const connections = [];
+        
+        // Create nodes
+        for (let i = 0; i < 12; i++) {
+            const angle = (i / 12) * 2 * Math.PI;
+            const radius = 140;
+            const x = radius * Math.cos(angle) + 175;
+            const y = radius * Math.sin(angle) + 175;
+            
+            const node = document.createElement('div');
+            node.className = 'node';
+            node.style.left = `${x}px`;
+            node.style.top = `${y}px`;
+            neuralNetwork.appendChild(node);
+            nodes.push({x, y, element: node});
+        }
+        
+        // Create connections between nodes
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                if (Math.random() > 0.7) { // Randomly connect nodes
+                    const dx = nodes[j].x - nodes[i].x;
+                    const dy = nodes[j].y - nodes[i].y;
+                    const length = Math.sqrt(dx * dx + dy * dy);
+                    const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                    
+                    const connection = document.createElement('div');
+                    connection.className = 'connection';
+                    connection.style.width = `${length}px`;
+                    connection.style.left = `${nodes[i].x}px`;
+                    connection.style.top = `${nodes[i].y}px`;
+                    connection.style.transform = `rotate(${angle}deg)`;
+                    connection.style.opacity = Math.random() * 0.5 + 0.2;
+                    
+                    neuralNetwork.appendChild(connection);
+                    connections.push(connection);
+                }
+            }
+        }
+        
+        // Animate neural network connections
+        function animateConnections() {
+            connections.forEach(conn => {
+                const currentOpacity = parseFloat(conn.style.opacity);
+                const targetOpacity = Math.random() * 0.5 + 0.2;
+                const diff = targetOpacity - currentOpacity;
+                
+                conn.style.opacity = (currentOpacity + diff * 0.1).toString();
+            });
+            
+            requestAnimationFrame(animateConnections);
+        }
+        
+        animateConnections();
+        
+        // Create data stream animation
+        const dataStream = document.getElementById('dataStream');
+        
+        function createDataPoint() {
+            const dataPoint = document.createElement('div');
+            dataPoint.className = 'data-point';
+            dataPoint.style.left = `${Math.random() * 100}%`;
+            dataPoint.style.animationDuration = `${Math.random() * 2 + 2}s`;
+            dataPoint.style.animationDelay = `${Math.random() * 2}s`;
+            dataStream.appendChild(dataPoint);
+            
+            // Remove element after animation completes
+            setTimeout(() => {
+                if (dataPoint.parentNode) {
+                    dataPoint.parentNode.removeChild(dataPoint);
+                }
+            }, 5000);
+        }
+        
+        // Create multiple data points
+        setInterval(createDataPoint, 200);
+        
+        // Add some initial data points
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createDataPoint, i * 300);
+        }
+        
+        // Add interactive effect to profile image on hover
+        const profileImage = document.querySelector('.profile-image-wrapper');
+        
+        profileImage.addEventListener('mouseenter', () => {
+            document.querySelectorAll('.orb').forEach(orb => {
+                orb.style.animationDuration = '3s';
+            });
+        });
+        
+        profileImage.addEventListener('mouseleave', () => {
+            document.querySelectorAll('.orb').forEach(orb => {
+                orb.style.animationDuration = '6s';
+            });
+        });
+    </script>
+</body>
+</html>
